@@ -3,24 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat MUN Profesional</title>
+  <title>Chat MUN Profesional - Luis Ángel Vidal Maduro</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="chat-container">
+  <!-- Pantalla de carga inicial -->
+  <div id="loader">
+    <div class="loader-circle"></div>
+    <p>Cargando Chat MUN...</p>
+  </div>
+
+  <div class="chat-container" id="chatContainer" style="display:none;">
     <div class="header">
-      <div class="header-left">
-        <h2>Chat MUN</h2>
-        <p>Luis Ángel Vidal Maduro - Secretario de Comunicaciones, Regional 01 Distrito 01-02</p>
-      </div>
+      <h2>Chat MUN</h2>
+      <p>Luis Ángel Vidal Maduro - Secretario de Comunicaciones, Regional 01 Distrito 01-02</p>
     </div>
+
     <div class="chat-window" id="chatWindow">
-      <div class="bot-message">
-        👋 Hola, soy tu asistente MUN. Escribe tu pregunta o activa el modo entrenamiento.
-      </div>
+      <div class="bot-message">👋 Hola, soy tu asistente MUN. Escribe tu pregunta o activa el modo entrenamiento.</div>
     </div>
+
     <div class="input-area">
-      <input type="text" id="userInput" placeholder="Escribe tu pregunta...">
+      <input type="text" id="userInput" placeholder="Escribe tu mensaje..." autocomplete="off">
       <button id="sendBtn">Enviar</button>
       <button id="trainBtn">Entrenamiento</button>
     </div>
@@ -28,5 +32,14 @@
 
   <script src="data.js"></script>
   <script src="chat.js"></script>
+  <script>
+    // Simular pantalla de carga
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("chatContainer").style.display = "flex";
+      }, 1500); // 1.5 segundos
+    });
+  </script>
 </body>
 </html>

@@ -3,12 +3,10 @@ const sendBtn = document.getElementById("sendBtn");
 const trainBtn = document.getElementById("trainBtn");
 const chatWindow = document.getElementById("chatWindow");
 
-// Normalizar texto
 function normalizar(texto) {
   return texto.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
-// Buscar respuesta flexible
 function buscarRespuesta(preguntaUsuario) {
   const texto = normalizar(preguntaUsuario);
   return preguntas.find(item => {
@@ -18,7 +16,6 @@ function buscarRespuesta(preguntaUsuario) {
   });
 }
 
-// Mostrar mensaje en ventana de chat
 function mostrarMensaje(texto, tipo) {
   const div = document.createElement("div");
   div.classList.add("message");
@@ -28,7 +25,6 @@ function mostrarMensaje(texto, tipo) {
   chatWindow.scrollTop = chatWindow.scrollHeight;
 }
 
-// Enviar pregunta
 sendBtn.addEventListener("click", () => {
   const textoUsuario = userInput.value;
   if (!textoUsuario.trim()) return;
@@ -37,12 +33,11 @@ sendBtn.addEventListener("click", () => {
   if (respuesta) {
     mostrarMensaje(respuesta.respuesta_larga, "bot");
   } else {
-    mostrarMensaje("❗ No encontré una respuesta exacta. Intenta con otra redacción.", "bot");
+    mostrarMensaje("❗ No encontré una respuesta exacta. Intenta otra redacción.", "bot");
   }
   userInput.value = "";
 });
 
-// Entrenamiento
 trainBtn.addEventListener("click", () => {
   const aleatorio = preguntas[Math.floor(Math.random() * preguntas.length)];
   mostrarMensaje("🤖 Entrenamiento: " + aleatorio.pregunta, "bot");
@@ -53,6 +48,6 @@ trainBtn.addEventListener("click", () => {
   if (correcta.includes(usuarioNorm) || usuarioNorm.includes(correcta)) {
     mostrarMensaje("✅ ¡Correcto! Bien hecho.", "bot");
   } else {
-    mostrarMensaje("❌ Respuesta incorrecta o parcial. Revisa la información.", "bot");
+    mostrarMensaje("❌ Respuesta incorrecta o parcial. Revisa la base de datos.", "bot");
   }
 });
