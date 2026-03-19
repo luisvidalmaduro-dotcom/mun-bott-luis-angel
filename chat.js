@@ -18,7 +18,7 @@ function buscarRespuesta(preguntaUsuario) {
   });
 }
 
-// Mostrar mensaje en la ventana de chat
+// Mostrar mensaje en ventana de chat
 function mostrarMensaje(texto, tipo) {
   const div = document.createElement("div");
   div.classList.add("message");
@@ -37,22 +37,22 @@ sendBtn.addEventListener("click", () => {
   if (respuesta) {
     mostrarMensaje(respuesta.respuesta_larga, "bot");
   } else {
-    mostrarMensaje("No encontré una respuesta exacta. Intenta con otra redacción.", "bot");
+    mostrarMensaje("❗ No encontré una respuesta exacta. Intenta con otra redacción.", "bot");
   }
   userInput.value = "";
 });
 
-// Modo entrenamiento
+// Entrenamiento
 trainBtn.addEventListener("click", () => {
   const aleatorio = preguntas[Math.floor(Math.random() * preguntas.length)];
-  mostrarMensaje("Entrenamiento: " + aleatorio.pregunta, "bot");
+  mostrarMensaje("🤖 Entrenamiento: " + aleatorio.pregunta, "bot");
   const respuestaUsuario = prompt("Escribe tu respuesta:");
   if (!respuestaUsuario) return;
   const correcta = normalizar(aleatorio.respuesta_larga);
   const usuarioNorm = normalizar(respuestaUsuario);
   if (correcta.includes(usuarioNorm) || usuarioNorm.includes(correcta)) {
-    mostrarMensaje("¡Correcto! Bien hecho.", "bot");
+    mostrarMensaje("✅ ¡Correcto! Bien hecho.", "bot");
   } else {
-    mostrarMensaje("Respuesta incorrecta o parcial. Revisa la información en la base de datos.", "bot");
+    mostrarMensaje("❌ Respuesta incorrecta o parcial. Revisa la información.", "bot");
   }
 });
