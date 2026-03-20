@@ -5,7 +5,6 @@ const chatWindow = document.getElementById("chatWindow");
 
 // ====================== Respuestas mundanas / saludos extendidas ======================
 const respuestasGenerales = [
-  // Saludos
   { triggers: ["hola", "buenas", "hey", "hi", "buen día"], 
     respuesta: "¡Hola! 👋 Soy tu asistente MUN. Puedes preguntarme sobre protocolo, documentos oficiales o estrategias de debate. ¿Con qué quieres empezar hoy?" 
   },
@@ -18,8 +17,6 @@ const respuestasGenerales = [
   { triggers: ["como estas", "qué tal", "cómo va"], 
     respuesta: "Estoy bien, gracias por preguntar. 😄 ¿Listo para entrenar tus habilidades diplomáticas hoy?" 
   },
-
-  // Preguntas sobre el chat
   { triggers: ["qué es este chat", "para qué sirve", "cómo funciona"], 
     respuesta: "Este chatbot es tu asistente educativo para Modelos de Naciones Unidas. Te ayuda a entender protocolo, redactar documentos oficiales, practicar estrategias de debate y prepararte para la etapa Regional 01-02. Solo escribe tu pregunta o activa el modo entrenamiento y te daré una respuesta detallada." 
   },
@@ -57,6 +54,19 @@ const respuestasGenerales = [
     respuesta: "Equivocarse es parte del aprendizaje. Lo importante es mantener la calma, corregir de manera respetuosa y continuar participando. Cada error es una oportunidad para mejorar y aprender a desenvolverse mejor en futuras sesiones." 
   }
 ];
+
+// ====================== Función para respuestas generales ======================
+function respuestaGeneral(textoUsuario) {
+  const texto = normalizar(textoUsuario);
+  for (let item of respuestasGenerales) {
+    for (let trigger of item.triggers) {
+      if (texto.includes(normalizar(trigger))) {
+        return item.respuesta;
+      }
+    }
+  }
+  return null; // Si no hay coincidencia
+}
 
 // ====================== Funciones existentes ======================
 function normalizar(texto) {
